@@ -22,7 +22,8 @@
             font-weight: bold;
             margin-bottom: 30px;
         }
-        .layer-number{
+
+        .layer-number {
             font-size: 1.2em;
             font-weight: bold;
             margin-top: 30px;
@@ -31,36 +32,36 @@
 </head>
 
 <body>
-
-    <div class="row">
-        <div class="col">
-            <h1>Rubik's Cube</h1>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <div class="d-flex flex-column align-items-center">
-                <img src="./img/steps/front.png" alt="">
-                Front
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Rubik's Cube</h1>
             </div>
         </div>
-    </div>
 
-    <div class="notation d-non">
         <div class="row">
+            <div class="col">
+                <div class="d-flex flex-column align-items-center">
+                    <img src="./img/steps/front.png" alt="">
+                    Front
+                </div>
+            </div>
         </div>
+
+        <div class="notation d-non">
+            <div class="row">
+            </div>
+        </div>
+
+        <div class="steps"></div>
+
     </div>
-
-
-
-    <div class="steps"></div>
 
     <script>
 
         const notationRow = document.querySelector('.notation .row');
         var templates = '';
-        ["F", "R",  "U", "L", "D", "B"].forEach((name) => {
+        ["F", "R", "U", "L", "D", "B"].forEach((name) => {
             for (let index = 0; index <= 1; index++) {
                 templates += `<div class="col-2">
                     <div class="d-flex flex-column align-items-center">
@@ -89,19 +90,19 @@
             2: [
                 {
                     description: 'sposta cubo centrale a destra',
-                    initial_state: '2',
+                    initial_states: ['2'],
                     moves: ["D'", "R'", "D'", "R", "D", "F", "D", "F'"],
                 },
                 {
                     description: 'sposta cubo centrale a sinistra',
-                    initial_state: '1',
+                    initial_states: ['1'],
                     moves: ["D", "L", "D", "L'", "D'", "F'", "D'", "F"],
                 },
             ],
             3: [
                 {
                     description: 'croce',
-                    initial_state: '3',
+                    initial_states: ['3','4', '5'],
                     moves: ["F", "R", "U", "R'", "U'", "F'"],
                 },
             ],
@@ -119,10 +120,14 @@
             descriptionElement.textContent = stepData.description;
             stepElement.appendChild(descriptionElement);
 
-            const imageElement = document.createElement('img');
-            imageElement.classList.add('step_cube');
-            imageElement.src = `./img/steps/${stepData.initial_state}.png`;
-            stepElement.appendChild(imageElement);
+            for (let index = 0; index < stepData.initial_states.length; index++) {
+                const initial_state = stepData.initial_states[index];
+                
+                const imageElement = document.createElement('img');
+                imageElement.classList.add('step_cube');
+                imageElement.src = `./img/steps/${initial_state}.png`;
+                stepElement.appendChild(imageElement);
+            }
 
             var moves = '';
             for (let i = 0; i < stepData.moves.length; i++) {
