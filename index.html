@@ -116,19 +116,24 @@
                     moves: ["R", "U", "R'", "U", "R", "U", "U", "R'"],
                 },
                 {
-                    description: 'posizionamento angoli',
+                    description: 'posizionamento angoli - TODO da confermare e trovare l\'opposto',
                     initial_states: ['8'],
-                    moves: [],
+                    moves: ["U","R","U'","L'","U","R'","U'","L"],
                 },
                 {
-                    description: 'posizionamento angoli',
+                    description: 'posizionamento angoli - TODO da confermare e trovare l\'opposto',
                     initial_states: ['9'],
-                    moves: [],
+                    moves: ["U","R","U'","L'","U","R'","U'","L"],
                 },
                 {
-                    description: 'orientamento angoli',
+                    description: "orientamento angoli: ripeti fino a quando l'angolo in basso a destra non è orientato correttamente",
                     initial_states: ['10'],
-                    moves: [],
+                    moves: ["R","U","R'","U'",],
+                },
+                {
+                    description: "orientamento angoli: quando il primo angolo è orientato correttamente, esegui D e ripeti lo step precedente fino alla risoluzione del cubo",
+                    initial_states: ['11'],
+                    moves: ["D", "R","U","R'","U'",],
                 },
             ],
         };
